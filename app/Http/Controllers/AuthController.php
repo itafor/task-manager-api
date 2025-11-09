@@ -22,10 +22,6 @@ class AuthController extends Controller implements AuthInterface
 
         $user = $this->service->register($request->validated());
 
-        if (!$user) {
-            return $this->failure(details: 'Check your referrer code');
-        }
-
         return self::returnDataWithToken($user, 'Registration Successful');
     }
 

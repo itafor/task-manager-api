@@ -28,4 +28,12 @@ trait RespondsWithHttpStatus
 
         return response()->json($res, $status);
     }
+
+    public function notFound($message = 'Not found', $data = null): JsonResponse|null
+    {
+        return response()->json([
+            "message" => $message,
+            "data" => $data,
+        ], 404);
+    }
 }

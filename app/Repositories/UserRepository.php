@@ -17,10 +17,6 @@ class UserRepository
         $this->model = $user;
     }
 
-    public function getAll(): Collection|array
-    {
-        return $this->model->all();
-    }
 
     public function findById(int $id): ?User
     {
@@ -36,15 +32,5 @@ class UserRepository
     public function create(array $data): User
     {
         return $this->model->create($data);
-    }
-
-    public function update(int $id, array $data): bool
-    {
-        return $this->model->find($id)->update($data);
-    }
-
-    public function delete(int $id): bool
-    {
-        return $this->model->find($id)->delete();
     }
 }
