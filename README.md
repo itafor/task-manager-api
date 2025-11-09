@@ -2,10 +2,10 @@ A simple RESTful API for a task management system.
 
 The RESTful API can be tested in two ways.
 
-Testing with a remote base URL (http://staging.evaltopup.com)
+Testing with a remote base URL (https://task.api.evaltopup.com/)
 
 1. Inport the attached postman collection into your postman workspace
-2. Test all the available endpoints with this base URL: http://staging.evaltopup.com
+2. Test all the available endpoints with this base URL: https://task.api.evaltopup.com/
 
 Testing Locally
 
