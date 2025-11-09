@@ -19,7 +19,7 @@ class TaskController extends Controller
 
     public function createTask(CreateTaskRequest $request): JsonResponse
     {
-
+        logger($request->validated());
         $task = $this->service->createTask($request->validated());
 
         return $this->success('Task created successfully', data: new TaskResource($task));

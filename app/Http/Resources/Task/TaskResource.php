@@ -17,7 +17,7 @@ class TaskResource extends JsonResource
     {
         $data = parent::toArray($request);
         Arr::set($data, 'title',  $this['title']);
-        Arr::set($data, 'description', $this['description'] != null);
+        Arr::set($data, 'description', $this['description']);
         Arr::set($data, 'created_at', date('Y-m-d H:i:s', strtotime($this['created_at'])));
         Arr::set($data, 'owner', $this->user()->first(['id', 'name',  'email']));
 
