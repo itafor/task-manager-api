@@ -25,9 +25,9 @@ class EditTaskRequest extends FormRequest
     {
         return [
             'task_id' => ['required', 'numeric', 'exists:tasks,id'],
-            'title' => ['nullable', 'required', 'string'],
-            'description' =>  ['nullable', 'string'],
-            'status' =>  ['nullable', 'string', Rule::in([TaskStatus::PENDING, TaskStatus::INPROGRESS, TaskStatus::COMPLETED])],
+            'title' => ['nullable'],
+            'description' =>  ['nullable'],
+            'status' =>  ['nullable'],
         ];
     }
 }

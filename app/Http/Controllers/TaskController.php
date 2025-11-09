@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TaskStatus;
 use App\Http\Requests\Task\CreateTaskRequest;
 use App\Http\Requests\Task\EditTaskRequest;
 use App\Http\Requests\Task\FilterTaskByStatusRequest;
@@ -10,6 +11,7 @@ use App\Services\TaskService;
 use App\Traits\RespondsWithHttpStatus;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class TaskController extends Controller
 {
@@ -30,6 +32,12 @@ class TaskController extends Controller
      */
     public function editTask(EditTaskRequest $request): JsonResponse
     {
+        if (isset($request->status)) {
+            $request->validate([
+                'status' => ['bail', 'string', Rule::in([TaskStatus::PENDING, TaskStatus::INPROGRESS, TaskStatus::COMPLETED])]
+            ]);
+        }
+
         $task = $this->service->updateTask($request->validated());
 
         return $this->success('Task updated successfully', data: new TaskResource($task));
