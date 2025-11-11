@@ -60,10 +60,15 @@ class AuthService
             if (!$checkPassword) {
                 throw new Exception('Incorrect password');
             }
+
+            if ($user->tokens()->exists()) {
+                throw new Exception('A user is already logged in elsewhere with same email and password');
+            }
+
             return ['user' => $user];
         } catch (\Throwable $th) {
             $error = $th->getMessage();
-            throw new Exception("Something went wrong: $error");
+            throw new Exception($error);
         }
     }
 }

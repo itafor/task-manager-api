@@ -22,7 +22,9 @@ class AuthController extends Controller implements AuthInterface
 
         $user = $this->service->register($request->validated());
 
-        return self::returnDataWithToken($user, 'Registration Successful');
+        return $this->success(message: 'Registration Successful', data: new UserResource($user));
+
+        // return self::returnDataWithToken($user, 'Registration Successful');
     }
 
     /**
@@ -41,7 +43,9 @@ class AuthController extends Controller implements AuthInterface
 
     public function logout(Request $request): JsonResponse
     {
-        $request->user()->currentAccessToken()->delete();
+        $user = $request->user();
+        $user->tokens()->delete();
+        // $user->currentAccessToken()->delete();
 
         return $this->success('Logout successful');
     }

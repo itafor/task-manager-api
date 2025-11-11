@@ -17,7 +17,7 @@ class UserResource extends JsonResource
     {
         $data = parent::toArray($request);
         Arr::set($data, 'name',  $this['name']);
-        Arr::set($data, 'email', $this['email'] != null);
+        Arr::set($data, 'email', $this['email']);
         Arr::set($data, 'created_at', date('Y-m-d H:i:s', strtotime($this['created_at'])));
 
         unset(
